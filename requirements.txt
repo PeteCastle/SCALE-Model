@@ -1,0 +1,15 @@
+
+
+opencv-python
+
+setuptools==59.5.0
+protobuf==3.20.*
+torch==2.2.0+cu121
+torchvision==0.17+cu113
+pandas
+scikit-image
+filterpy
+imgaug
+scikit-learn
+# git+https://github.com/facebookresearch/detectron2.git
+#torch==2.2.0+cu121 torchvision==0.17+cu121 -f https://download.pytorch.org/whl/cu121/torch_stable.html            
