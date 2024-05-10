@@ -11,15 +11,18 @@ Other repositories:
 - [Prototype's Arduino Code](https://github.com/PeteCastle/SCALE-Arduino)
 <!-- ![Scale Team](assets/scale_team.png) -->
 
-### Software Architecture
-![Software Architecture](assets/scale_software_arch_ml_focused.png)
-
 ### Setting Up
 1. *Create your own environment.  Suggested Python version: 3.9*
 2. `pip install -r requirements.txt`
 3. `pip3 install torch==1.10.1+cu113 torchvision==0.11.2+cu113 torchaudio===0.10.1+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html` (Requires CUDA-Enabled Device)
 4. Run the Jupyter notebook file `src/train.ipynb`
 5. Outputs of the model will be saved in the `output` folder
+
+### Summary
+![Software Architecture](assets/scale_software_arch_ml_focused.png)
+The software architecture for the machine learning model comprises distinct phases: training and testing. During the training phase, the system ingests training photos along with an annotation file formatted using CVAT in COCO format. This input undergoes several stages of image processing, including resizing, normalization, data augmentation, and region proposal. Subsequently, feature extraction takes place, followed by the core of the architecture—the Faster Region-based Convolutional Neural Network (Faster R-CNN) leveraging Detectron 2. This CNN is built on a ResNet-50 backbone and includes a region proposal network, region of interest pooling, and fully connected layers. 
+
+Upon completion of the training phase, the system transitions to the testing phase. Here, it encounters testing photos that undergo similar preprocessing steps as seen in the training phase—resizing, normalization, data augmentation, and region proposal. The prediction stage involves Region of Interest (ROI) pooling, classification, and bounding-box regression. Utilizing existing model weights as input, non-maximum suppression is applied to refine the predictions, resulting in bounding boxes, class labels, and confidence scores as output. These outputs are then compared against ground truth annotations, leading to the computation of evaluation metrics to assess the model's performance. This comprehensive architecture seamlessly integrates image processing, feature extraction, and deep learning techniques to train and evaluate a sophisticated object detection model, catering to both training and testing phases of machine learning workflows.
 
 ### About the Model
 #### Data Collection Phase
